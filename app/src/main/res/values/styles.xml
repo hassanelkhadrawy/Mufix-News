@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/loginColor</item>
         <item name="colorPrimaryDark">@color/loginColor</item>
@@ -10,12 +10,18 @@
 
     <style name="FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/loginColor</item>
+        <item name="colorPrimaryDark">@color/loginColor</item>
+        <item name="colorAccent">@color/loginColor</item>
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="NoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/loginColor</item>
+        <item name="colorPrimaryDark">@color/loginColor</item>
+        <item name="colorAccent">@color/loginColor</item>
+    </style>
     <style name="BottomNavigation">
         <item name="android:background">@color/blue_btn_bg_color</item>
         <item name="itemBackground">@drawable/background_nav_items</item>
@@ -23,5 +29,11 @@
         <item name="itemTextColor">@color/loginColor</item>
         <item name="paddingStart">@dimen/action_button_content_margin</item>
         <item name="paddingEnd">@dimen/action_button_size</item>
+    </style>
+
+    <style name="HeaderBar">
+        <item name="itemTextColor">@color/loginColor</item>
+        <item name="actionMenuTextColor">@color/whihte</item>
+
     </style>
 </resources>

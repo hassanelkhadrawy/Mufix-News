@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.finalmufixapp.Models.Post_Model;
 import com.example.finalmufixapp.R;
@@ -33,12 +34,7 @@ public class Profile_Post_Adaptr extends RecyclerView.Adapter<Profile_Post_Adapt
 
 
     Context context;
-    private AlertDialog.Builder builder;
-    private View full_Post_Layout_View;
-    private ImageView full_post_Image_View,Like,Comment;
-    private TextView Discreption;
     ArrayList<Post_Model> post_info_list;
-    private boolean Flag=false;
 
     public Profile_Post_Adaptr(Context context, ArrayList<Post_Model> post_info_list) {
         this.context = context;
@@ -59,6 +55,7 @@ public class Profile_Post_Adaptr extends RecyclerView.Adapter<Profile_Post_Adapt
 
 
         holder.post_Tittle.setText(post_info_list.get(position).Text_Tittle);
+        Toast.makeText(context, ""+post_info_list.size(), Toast.LENGTH_SHORT).show();
 
 
 
@@ -70,54 +67,6 @@ public class Profile_Post_Adaptr extends RecyclerView.Adapter<Profile_Post_Adapt
     }
 
 
-//    public void Show_Full_Post(int postion) {
-//
-//        builder = new AlertDialog.Builder(context);
-//        full_Post_Layout_View = LayoutInflater.from(context).inflate(R.layout.full_post_item, null);
-//        full_post_Image_View=full_Post_Layout_View.findViewById(R.id.full_post_image_view);
-//        Discreption=full_Post_Layout_View.findViewById(R.id.full_text_post);
-//        Like=full_Post_Layout_View.findViewById(R.id.like);
-//
-//
-//        builder.setView(full_Post_Layout_View);
-//        builder.setCancelable(false);
-//
-//        if (Flag==true){
-//            Like.setBackgroundResource(R.drawable.fill_like_icon);
-//        }else {
-//            Like.setBackgroundResource(R.drawable.like_icon);
-//
-//        }
-//
-//        Picasso.with(context).load(Recycler_Post_Adapter.view_holder.url+post_info_list.get(postion).P_Image).into(full_post_Image_View);
-//        Discreption.setText(post_info_list.get(postion).Text_Post);
-//
-//
-//        Like.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (Flag==false){
-//                    Like.setBackgroundResource(R.drawable.fill_like_icon);
-//                    Flag=true;
-//
-//
-//                }else {
-//                    Like.setBackgroundResource(R.drawable.like_icon);
-//                    Flag=false;
-//
-//                }
-//
-//            }
-//        });
-//
-//        builder.setNegativeButton("Hide", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                dialogInterface.cancel();
-//            }
-//        });
-//        builder.show();
-//
-//    }
+
 
 }

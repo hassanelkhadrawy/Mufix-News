@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -13,10 +14,13 @@ import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -54,9 +58,10 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class SignIn extends Fragment {
 
     View LayoutView;
-    private FloatingActionButton SignIn;
+    private FloatingActionButton SignInF_A_B;
     private EditText Person_Username,Person_password;
     ConstraintLayout relativeLayout;
+    TextView NewAccount;
     private RequestQueue requestQueue;
     private String get_Password, get_Email,get_Username,get_P_Image;
     SharedPreferences sharedPreferences;
@@ -64,7 +69,7 @@ public class SignIn extends Fragment {
     SweetAlertDialog pDialog;
     private ArrayList<P_Info_Model> Person_Login_List = new ArrayList<>();
     private String URL = "https://hassan-elkhadrawy.000webhostapp.com/mufix_app/phpfiles/getUser_Info.php";
-
+    private String facebookUrl="https://www.facebook.com/mufix.org/";
 
     public SignIn() {
         // Required empty public constructor
@@ -94,7 +99,8 @@ public class SignIn extends Fragment {
         Person_Username=LayoutView.findViewById(R.id.username);
         Person_password=LayoutView.findViewById(R.id.P_password);
         relativeLayout=LayoutView.findViewById(R.id.PLAY_PARENT);
-        SignIn=LayoutView.findViewById(R.id.floatingActionButton);
+        NewAccount=LayoutView.findViewById(R.id.newaccount);
+        SignInF_A_B=LayoutView.findViewById(R.id.floatingActionButton);
         sharedPreferences=getActivity().getSharedPreferences("mufix_file", Context.MODE_PRIVATE);
         editor=sharedPreferences.edit();
 
@@ -104,16 +110,26 @@ public class SignIn extends Fragment {
         new BackgroundServices().execute();
 
 
-        SignIn.setOnClickListener(new View.OnClickListener() {
+        NewAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent=new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("fb://facewebmodal/f?href=" + facebookUrl));
+                startActivity(intent);
+            }
+        });
+
+
+        SignInF_A_B.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                  if (Person_Login_List.size()==0){
                      new BackgroundServices().execute();
+                 }else {
 
                  }
-                    CHECK_PERSON_LOGIN();
-
+                CHECK_PERSON_LOGIN();
 
 
             }
@@ -127,39 +143,51 @@ public class SignIn extends Fragment {
 
 
 
+        if (Person_Username.getText().toString().isEmpty()){
+            Toast.makeText(getActivity(), "enter email", Toast.LENGTH_SHORT).show();
 
 
+        }else if (Person_password.getText().toString().isEmpty()){
+            Toast.makeText(getActivity(), "enter password", Toast.LENGTH_SHORT).show();
+
+        }else {
+
+            for (int x=0;x< Person_Login_List.size();x++){
 
 
-        for (int x=0;x< Person_Login_List.size();x++){
+                if (Person_Username.getText().toString().equals(Person_Login_List.get(x).P_Email)
+                        && Person_password.getText().toString().equals(Person_Login_List.get(x).P_Password) ){
 
+                    editor.putString("Email",Person_Username.getText().toString());
+                    editor.putString("person_password",Person_password.getText().toString());
+                    editor.putString("Username",Person_Login_List.get(x).Username);
+                    editor.putString("P_Image",Person_Login_List.get(x).P_Image);
 
-            if (Person_Username.getText().toString().equals(Person_Login_List.get(x).P_Email)
-                    && Person_password.getText().toString().equals(Person_Login_List.get(x).P_Password) ){
-
-                editor.putString("Email",Person_Username.getText().toString());
-                editor.putString("person_password",Person_password.getText().toString());
-                editor.putString("Username",get_Username);
-                editor.putString("P_Image",get_P_Image);
-
-                editor.commit();
-                pDialog.dismiss();
-                startActivity(new Intent(getActivity(), Home.class));
-
-
-            }else {
-
-                if (Person_Login_List.size() -1== x){
-
+                    editor.commit();
                     pDialog.dismiss();
-                    Snackbar.make(relativeLayout,"Email or Password Incorrect",Snackbar.LENGTH_SHORT).show();
+                    startActivity(new Intent(getActivity(), Home.class));
 
+                    getActivity().finish();
+
+                }else {
+
+                    if (Person_Login_List.size() -1== x){
+
+                        pDialog.dismiss();
+                        Snackbar.make(relativeLayout,"Email or Password Incorrect",Snackbar.LENGTH_SHORT).show();
+
+
+                    }
 
                 }
 
             }
 
+
         }
+
+
+
 
 
     }
@@ -245,8 +273,7 @@ class BackgroundServices extends AsyncTask<Void,Void,String>{
                 get_Password = getData.getString("password");
                 get_P_Image = getData.getString("p_image");
 
-
-                Person_Login_List.add(new P_Info_Model(get_Email, get_Password));
+                Person_Login_List.add(new P_Info_Model(get_Username,get_Email, get_Password,get_P_Image));
 
             }
 
@@ -255,9 +282,17 @@ class BackgroundServices extends AsyncTask<Void,Void,String>{
                     if (sharedPreferences.getString("Email","no data").equals(Person_Login_List.get(x).P_Email)
                             &&sharedPreferences.getString("person_password","no data").equals(Person_Login_List.get(x).P_Password )){
 
-                        pDialog.dismiss();
+                        editor.putString("Email",Person_Username.getText().toString());
+                        editor.putString("person_password",Person_password.getText().toString());
+                        editor.putString("Username",Person_Login_List.get(x).Username);
+                        editor.putString("P_Image",Person_Login_List.get(x).P_Image);
+
+                        editor.commit();
 
                         startActivity(new Intent(getActivity(), Home.class));
+                        pDialog.dismiss();
+                        getActivity().finish();
+
 
                     }else {
 
@@ -281,6 +316,8 @@ class BackgroundServices extends AsyncTask<Void,Void,String>{
             }
 
         }else {
+            pDialog.dismiss();
+
             Snackbar.make(relativeLayout,"chech internet",Snackbar.LENGTH_SHORT).show();
 
         }

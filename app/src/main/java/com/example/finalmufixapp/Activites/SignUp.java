@@ -7,6 +7,8 @@ import android.os.Bundle;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,9 +72,34 @@ public class SignUp extends Fragment {
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pDialog.show();
 
-                Send_Person_Data();
+                if (Person_Name.getText().toString().isEmpty()){
+                    Toast.makeText(getActivity(), "enter your name", Toast.LENGTH_SHORT).show();
+
+                }else if (Email.getText().toString().isEmpty()){
+                    Toast.makeText(getActivity(), "enter your Email", Toast.LENGTH_SHORT).show();
+
+
+                }else if (Password.getText().toString().isEmpty()){
+                    Toast.makeText(getActivity(), "enter your Password", Toast.LENGTH_SHORT).show();
+
+
+                }else if (Patterns.EMAIL_ADDRESS.matcher(Email.getText().toString()).matches()){
+                    Toast.makeText(getActivity(), "enter correct Email", Toast.LENGTH_SHORT).show();
+
+
+                }else if (Password.getText().toString().length() >6){
+                    Toast.makeText(getActivity(), "password very weak", Toast.LENGTH_SHORT).show();
+
+
+                }else {
+                    pDialog.show();
+
+                    Send_Person_Data();
+
+                }
+
+
             }
         });
 
@@ -116,6 +143,8 @@ public class SignUp extends Fragment {
                     if (success) {
                         Toast.makeText(getActivity(), "done", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getActivity(), Home.class));
+                        getActivity().finish();
+
 
                     } else {
                         pDialog.dismiss();

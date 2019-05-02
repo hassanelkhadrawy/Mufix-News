@@ -26,7 +26,6 @@ public class Profile extends Fragment {
     SharedPreferences.Editor editor;
     View Profile_view;
 
-    String[] list = {"android", "Linux", "Problem Solving"};
     public Profile() {
         // Required empty public constructor
     }

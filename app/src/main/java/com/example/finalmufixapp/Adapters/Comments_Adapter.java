@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.finalmufixapp.Models.Comment_Model;
 import com.example.finalmufixapp.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -31,6 +32,8 @@ public class Comments_Adapter extends RecyclerView.Adapter<Comments_Adapter.C_ho
     }
 Context context;
     ArrayList<Comment_Model>list;
+    static String url = "https://hassan-elkhadrawy.000webhostapp.com/mufix_app/phpfiles/images/";
+
 
     public Comments_Adapter(Context context,ArrayList<Comment_Model>list) {
         this.context = context;
@@ -48,6 +51,11 @@ Context context;
 
     @Override
     public void onBindViewHolder(@NonNull C_holder c_holder, int i) {
+
+        c_holder.C_Username.setText(list.get(i).Username);
+        c_holder.C_text.setText(list.get(i).Comment);
+        Picasso.with(context).load(url+list.get(i).P_Image).into(c_holder.C_P_Image);
+
 
     }
 

@@ -36,7 +36,7 @@ public class Comments extends AppCompatActivity {
   private   EditText comment_txt;
   private String Email,Time,Date;
    private ArrayList<Comment_Model>C_List=new ArrayList<>();
-    private String URL="https://hassan-elkhadrawy.000webhostapp.com/mufix_app/phpfiles/get_Comments.php";
+    private String URL="https://hassan-elkhadrawy.000webhostapp.com/mufix_app/phpfiles/get_Comments.php?";
 
 
 
@@ -111,6 +111,7 @@ Send_Comments_Data();
 
 
     private void SELECT_Comments_Data() {
+        C_List.clear();
       RequestQueue  requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL+"time="+Time+"&date="+Date+"&email="+Email,
                 new Response.Listener<JSONObject>() {

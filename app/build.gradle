@@ -27,8 +27,11 @@ dependencies {
     implementation 'com.android.support:support-vector-drawable:28.0.0'
     testImplementation 'junit:junit:4.12'
     implementation 'com.android.support:design:28.0.0'
+    // butter knife
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
-
+    implementation 'com.github.recruit-lifestyle:WaveSwipeRefreshLayout:1.6'
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.mcxiaoke.volley:library:1.0.19'

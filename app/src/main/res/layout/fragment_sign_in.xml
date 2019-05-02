@@ -108,15 +108,15 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="25dp"
-                            android:text="Not yet Registered?" />
+                            android:text="Connect to us" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginTop="25dp"
-                            android:onClick="newaccount"
-                            android:text="Create an Account "
+                            android:id="@+id/newaccount"
+                            android:layout_marginTop="30dp"
+                            android:text="MUFIX"
                             android:textColor="@color/loginColor" />
 
                     </LinearLayout>

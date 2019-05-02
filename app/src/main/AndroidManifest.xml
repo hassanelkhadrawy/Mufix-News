@@ -12,14 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         tools:replace="android:icon">
-        <activity android:name=".Activites.Comments"
-            android:theme="@style/AppTheme"
-            android:label="Comments">
-
-        </activity>
+        <activity android:name=".Activites.About"
+            android:theme="@style/NoActionBarTheme"></activity>
+        <activity
+            android:name=".Activites.Edit"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activites.Comments"
+            android:label="Comments"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Activites.Home"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".Activites.MainActivity"
             android:theme="@style/FullScreen">

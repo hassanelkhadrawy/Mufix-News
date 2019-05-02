@@ -1,5 +1,6 @@
 package com.example.finalmufixapp.Adapters;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -38,8 +39,9 @@ import java.util.Calendar;
 
 public class Recycler_Post_Adapter extends RecyclerView.Adapter<Recycler_Post_Adapter.view_holder> {
 
-    public static class view_holder extends RecyclerView.ViewHolder {
-        TextView person_name, post_Tittle;
+
+    public static class view_holder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        TextView person_name, post_Tittle,time,date;
         ImageView Personal_Image;
         static String url = "https://hassan-elkhadrawy.000webhostapp.com/mufix_app/phpfiles/images/";
 
@@ -50,8 +52,16 @@ public class Recycler_Post_Adapter extends RecyclerView.Adapter<Recycler_Post_Ad
 
             person_name = itemView.findViewById(R.id.post_person_name);
             post_Tittle = itemView.findViewById(R.id.post_tittle);
-
             Personal_Image = itemView.findViewById(R.id.presonal_imge_post);
+            time = itemView.findViewById(R.id.time);
+            date = itemView.findViewById(R.id.date);
+
+
+
+        }
+
+        @Override
+        public void onClick(View v) {
 
         }
     }
@@ -63,13 +73,21 @@ public class Recycler_Post_Adapter extends RecyclerView.Adapter<Recycler_Post_Ad
     private ImageView full_post_Image_View,Like,Comment;
     private TextView Discreption;
     ArrayList<Post_Model> post_info_list;
+    private static ClickListener clickListener;
 
-    public Recycler_Post_Adapter(Context context, ArrayList<Post_Model> post_info_list) {
+
+    public Recycler_Post_Adapter(Context context, ArrayList<Post_Model> post_info_list, ClickListener cardClickListener) {
         this.context = context;
         this.post_info_list = post_info_list;
+        this.clickListener = cardClickListener;
+
     }
 
+    public interface ClickListener {
+        void onItemClick(int position);
+        void on_P_Img_Click(int position);
 
+    }
 
     @NonNull
     @Override
@@ -84,6 +102,8 @@ public class Recycler_Post_Adapter extends RecyclerView.Adapter<Recycler_Post_Ad
 
         holder.person_name.setText(post_info_list.get(position).Username);
         holder.post_Tittle.setText(post_info_list.get(position).Text_Tittle);
+        holder.time.setText(post_info_list.get(position).Time);
+        holder.date.setText(post_info_list.get(position).Date);
 
         if ( post_info_list.get(position).P_Image.equals("null")){
 
@@ -95,13 +115,24 @@ public class Recycler_Post_Adapter extends RecyclerView.Adapter<Recycler_Post_Ad
 
 
 
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Show_Full_Post(position);
+                clickListener.onItemClick(position);
+//                Show_Full_Post(position);
             }
         });
+
+        holder.Personal_Image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickListener.on_P_Img_Click(position);
+
+
+            }
+        });
+
 
 
     }
