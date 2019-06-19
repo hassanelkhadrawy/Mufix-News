@@ -32,7 +32,10 @@ public class Edit extends AppCompatActivity {
 EditText new_name,new_email,_new_password;
 ImageView new_P_Img;
 SharedPreferences sharedPreferences;
+SharedPreferences.Editor editor;
     String encoding;
+    private String user_URL = "https://hassan-elkhadrawy.000webhostapp.com/mufix_app/phpfiles/getUser_Info.php";
+
     static String url = "https://hassan-elkhadrawy.000webhostapp.com/mufix_app/phpfiles/images/";
 
     @Override
@@ -44,6 +47,7 @@ SharedPreferences sharedPreferences;
         _new_password=findViewById(R.id.new_password);
         new_P_Img=findViewById(R.id.new_profile_circleImageView);
         sharedPreferences=getSharedPreferences("mufix_file", Context.MODE_PRIVATE);
+        editor=sharedPreferences.edit();
         Set_Old_Data();
 
 
@@ -56,8 +60,11 @@ SharedPreferences sharedPreferences;
 
 
         String Img=sharedPreferences.getString("P_Image","null");
-        if (Img!="null"){
+        if (Img.equals("null")){
+            new_P_Img.setBackgroundResource(R.drawable.ic_person_black_24dp);
 
+
+        }else {
             Picasso.with(this).load(url+sharedPreferences.getString("P_Image","null")).into(new_P_Img);
 
         }
@@ -97,9 +104,15 @@ SharedPreferences sharedPreferences;
             }
         };
         Update update_data = new Update(username, email, password, encoding, oldemail, r_listener);
-        //Toast.makeText(this, ""+username+ email+ password+ encoding+oldemail, Toast.LENGTH_SHORT).show();
         RequestQueue requestQueue = Volley.newRequestQueue(Edit.this);
         requestQueue.add(update_data);
+        editor.putString("Email",email);
+        editor.putString("person_password",password);
+        editor.putString("Username",username);
+        editor.commit();
+
+        startActivity(new Intent(Edit.this,MainActivity.class));
+        finish();
         Toast.makeText(this, " Data updated", Toast.LENGTH_SHORT).show();
     }
     private void get_P_Image(){
@@ -141,4 +154,6 @@ SharedPreferences sharedPreferences;
     public void Select_image_action(View view) {
         get_P_Image();
     }
+
+
 }

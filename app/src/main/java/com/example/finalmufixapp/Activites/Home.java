@@ -65,7 +65,7 @@ import java.util.Calendar;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class Home extends AppCompatActivity implements Recycler_Post_Adapter.ClickListener, View.OnClickListener {
+public class Home extends AppCompatActivity implements Recycler_Post_Adapter.ClickListener, View.OnClickListener, Profile_Post_Adaptr.ClickListener {
 
     private TextView mTextMessage;
     private FragmentTransaction fragmentTransaction;
@@ -82,7 +82,7 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
     private SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     private View proofile_view;
-    private ImageView Profile_Imag, search;
+    private ImageView Profile_Imag, bar_P_image;
     private TextView Profile_Person_Name;
     boolean list_Flag = false;
 
@@ -117,6 +117,7 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         mTopToolbar = findViewById(R.id.my_toolbar);
+        bar_P_image=findViewById(R.id.presonal_bar_imge_post);
         setSupportActionBar(mTopToolbar);
         mTopToolbar.setTitleTextColor(getResources().getColor(R.color.whihte));
         SweetAlertDialog();
@@ -130,6 +131,17 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
         searchView = findViewById(R.id.search_view);
         listView = findViewById(R.id.listView);
         listView.setVisibility(View.GONE);
+
+       String p_image_name=sharedPreferences.getString("P_Image","null");
+        if (p_image_name.equals("null")){
+
+            bar_P_image.setBackgroundResource(R.drawable.ic_person_black_24dp);
+
+        }else {
+            Picasso.with(Home.this).load(url +p_image_name).into(bar_P_image);
+
+        }
+
 
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, user_home.Search_List) {
 
@@ -232,25 +244,36 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    getFragmentManager().beginTransaction().remove(profile).commit();
+
+
+//                    getFragmentManager().beginTransaction().remove(profile).commit();
 
 
                     return true;
                 case R.id.navigation_dashboard:
 
-                    Create_POST_VIEW();
+                    try {
+                        Create_POST_VIEW();
+
+                    }catch (Exception e){
+
+                    }
                     return true;
                 case R.id.navigation_notifications:
-                    profile = new Profile();
+                    try {
+                        profile = new Profile();
+
+                        pDialog.show();
+                        SELECT_Prof_Post_INFO(Profile_Post_URL, sharedPreferences.getString("Email", "null"));
+
+                    }catch (Exception e){
+
+                    }
 //                    fragmentTransaction = getFragmentManager().beginTransaction();
 //                    fragmentTransaction.add(R.id.Container_Activities, profile, "Registration");
 ////                    fragmentTransaction.hide(user_home);
 //                    fragmentTransaction.commit();
 
-                    User_Home user_home = new User_Home();
-
-                    pDialog.show();
-                    SELECT_Prof_Post_INFO(Profile_Post_URL, sharedPreferences.getString("Email", "null"));
 
 
                     return true;
@@ -261,6 +284,7 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
 
 
     private void Create_POST_VIEW() {
+        Image_String = "null";
 
 
         builder = new AlertDialog.Builder(this);
@@ -279,10 +303,7 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
                 dialog = dialogInterface;
                 pDialog.show();
 
-                if (Flag = false) {
 
-                    Image_String = "null";
-                }
                 Send_Post_Data();
 
 
@@ -352,8 +373,9 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
                     boolean success = jsonObject.getBoolean("success");
                     if (success) {
                         pDialog.dismiss();
+
                         Toast.makeText(Home.this, "done", Toast.LENGTH_SHORT).show();
-                        Create_POST_VIEW();
+                        //Create_POST_VIEW();
                     } else {
                         pDialog.dismiss();
                         Toast.makeText(Home.this, "failed", Toast.LENGTH_SHORT).show();
@@ -401,6 +423,7 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
             editor.putString("P_Image", "");
 
             editor.commit();
+            startActivity(new Intent(Home.this,MainActivity.class));
             finish();
 
 
@@ -448,7 +471,7 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
                                 Profile_post_info_list.add(new Post_Model(getpost_email, get_Username, getpost_Tittle, getText_post, get_Image_Post, get_P_Image, get_P_Date, get_P_Time));
 
                             }
-                            Profile_Post_Adaptr profile_post_adaptr = new Profile_Post_Adaptr(Home.this, Profile_post_info_list);
+                            Profile_Post_Adaptr profile_post_adaptr = new Profile_Post_Adaptr(Home.this, Profile_post_info_list,Home.this);
                             Owner_Profile();
                             LinearLayoutManager layoutManager = new LinearLayoutManager(Home.this, LinearLayoutManager.HORIZONTAL, false);
                             Recycler_Item_Post.setLayoutManager(layoutManager);
@@ -492,7 +515,12 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
         Profile_Person_Name = proofile_view.findViewById(R.id.owner_profile_person_name);
         Recycler_Item_Post = proofile_view.findViewById(R.id.owner_profile_recyclerView);
         Profile_Person_Name.setText(sharedPreferences.getString("Username", "null"));
-        Picasso.with(Home.this).load(url + sharedPreferences.getString("P_Image", "null")).into(Profile_Imag);
+        if (sharedPreferences.getString("P_Image", "null").equals("null")){
+
+        }else {
+            Picasso.with(Home.this).load(url + sharedPreferences.getString("P_Image", "null")).into(Profile_Imag);
+
+        }
 
         BottomSheetDialog dialog = new BottomSheetDialog(Home.this);
         dialog.setContentView(proofile_view);
@@ -521,6 +549,7 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
                         && sharedPreferences.getString("person_password", "no").equals(password.getText().toString())) {
 
                     startActivity(new Intent(Home.this, Edit.class));
+                    finish();
                 } else {
                     Toast.makeText(Home.this, "wrong data", Toast.LENGTH_SHORT).show();
                 }
@@ -531,7 +560,6 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
     }
 
     void SELECT_Post_INFO(String Post_URL) {
-        Toast.makeText(this, Post_URL, Toast.LENGTH_SHORT).show();
 
         Post_List.clear();
         requestQueue = Volley.newRequestQueue(Home.this);
@@ -553,7 +581,6 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
                                 String get_P_Date = getData.getString("date");
                                 String get_P_Time = getData.getString("time");
 
-                                Toast.makeText(Home.this, getText_post, Toast.LENGTH_SHORT).show();
 
                                 Post_List.add(new Post_Model(getpost_email, get_Username, getpost_Tittle, getText_post, get_Image_Post, get_P_Image, get_P_Date, get_P_Time));
 
@@ -563,7 +590,6 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
                             Search_Recycler_Item_Post.setLayoutManager(new LinearLayoutManager(Home.this));
                             Search_Recycler_Item_Post.setAdapter(recycler_post_adapter);
                             recycler_post_adapter.notifyDataSetChanged();
-                            Toast.makeText(Home.this, ""+Post_List, Toast.LENGTH_SHORT).show();
 
                             //                          home.pDialog.dismiss();
 
@@ -608,7 +634,7 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
         if (!searchView.isIconified()) {
             searchView.setIconified(true);
             listView.setVisibility(View.GONE);
-            user_home.SELECT_Post_INFO(URL);
+            user_home.SELECT_Post_INFO(URL,Home.this);
         } else {
 
             Exit();
@@ -647,6 +673,15 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
 
     @Override
     public void on_P_Img_Click(int position) {
+
+
+    }
+
+    @Override
+    public void onPostClick(ArrayList<Post_Model> post_info_list, int position) {
+        User_Home user_home=new User_Home();
+        String Email=sharedPreferences.getString("Email","null");
+        user_home.full_Post(post_info_list,position,Email,Home.this);
 
     }
 }

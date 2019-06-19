@@ -8,12 +8,22 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/mufix_logo"
+        android:roundIcon="@drawable/mufix_logo"
         android:supportsRtl="true"
         tools:replace="android:icon">
-        <activity android:name=".Activites.About"
-            android:theme="@style/NoActionBarTheme"></activity>
+        <activity android:name=".Activites.Splash"
+            android:theme="@style/FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".Activites.About"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activites.Edit"
             android:theme="@style/AppTheme" />
@@ -27,11 +37,7 @@
         <activity
             android:name=".Activites.MainActivity"
             android:theme="@style/FullScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

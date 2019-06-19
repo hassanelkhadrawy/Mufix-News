@@ -13,12 +13,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.finalmufixapp.Adapters.Profile_Post_Adaptr;
+import com.example.finalmufixapp.Models.Post_Model;
 import com.example.finalmufixapp.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Profile extends Fragment {
+public class Profile extends Fragment implements Profile_Post_Adaptr.ClickListener {
 
     RecyclerView P_I_PostList;
     TextView Profile_Person_Name;
@@ -56,7 +59,7 @@ public class Profile extends Fragment {
 
 
         User_Home user_home=new User_Home();
-        Profile_Post_Adaptr profile_post_adaptr = new Profile_Post_Adaptr(getActivity(),user_home.Post_List);
+        Profile_Post_Adaptr profile_post_adaptr = new Profile_Post_Adaptr(getActivity(),user_home.Post_List,Profile.this);
 
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
@@ -67,5 +70,8 @@ public class Profile extends Fragment {
     }
 
 
+    @Override
+    public void onPostClick(ArrayList<Post_Model> post_info_list, int position) {
 
+    }
 }

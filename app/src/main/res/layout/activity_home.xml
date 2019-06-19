@@ -1,32 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#000"
+
+    android:background="@drawable/mufix_team"
     tools:context=".Activites.Home"
-    android:weightSum="10">
+   >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="10"
+        android:orientation="vertical"
+        android:id="@+id/container"
+        android:background="@color/buler_white">
+
 
     <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/button_background"
+        android:background="@drawable/bar_background"
         android:layout_gravity="top"
         app:popupTheme="@style/HeaderBar"
         android:theme="@style/HeaderBar">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/presonal_imge_post"
+            android:id="@+id/presonal_bar_imge_post"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:layout_margin="5dp"
-            android:src="@drawable/mufix_logo" />
+             />
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -105,5 +114,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/navigation" />
 
+    </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

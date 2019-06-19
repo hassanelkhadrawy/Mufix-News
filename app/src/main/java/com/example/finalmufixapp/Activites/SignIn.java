@@ -110,6 +110,9 @@ public class SignIn extends Fragment {
         new BackgroundServices().execute();
 
 
+
+
+
         NewAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,8 +139,26 @@ public class SignIn extends Fragment {
         });
 
     }
-
-
+//    protected void sendEmail() {
+//
+//        String[] TO = {"hassanelkhadrawy59@gmail.com"};
+//        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+//        emailIntent.setData(Uri.parse("mailto:"));
+//        emailIntent.setType("text/plain");
+//
+//
+//        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+//        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
+//        emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
+//
+//        try {
+//            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+//        } catch (android.content.ActivityNotFoundException ex) {
+//            Toast.makeText(getActivity(),
+//                    "There is no email client installed.", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+//
 
     private void CHECK_PERSON_LOGIN() {
 
@@ -209,7 +230,6 @@ class BackgroundServices extends AsyncTask<Void,Void,String>{
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        pDialog.show();
 
     }
 
@@ -277,41 +297,14 @@ class BackgroundServices extends AsyncTask<Void,Void,String>{
 
             }
 
-                for (int x=0;x<Person_Login_List.size();x++){
-
-                    if (sharedPreferences.getString("Email","no data").equals(Person_Login_List.get(x).P_Email)
-                            &&sharedPreferences.getString("person_password","no data").equals(Person_Login_List.get(x).P_Password )){
-
-                        editor.putString("Email",Person_Username.getText().toString());
-                        editor.putString("person_password",Person_password.getText().toString());
-                        editor.putString("Username",Person_Login_List.get(x).Username);
-                        editor.putString("P_Image",Person_Login_List.get(x).P_Image);
-
-                        editor.commit();
-
-                        startActivity(new Intent(getActivity(), Home.class));
-                        pDialog.dismiss();
-                        getActivity().finish();
-
-
-                    }else {
-
-                        if (Person_Login_List.size() -1== x){
-
-                            pDialog.dismiss();
-
-
-                        }
-
-
-                    }
-
-                }
 
 
 
             }catch (Exception e){
 
+
+            }
+            finally {
 
             }
 
@@ -327,5 +320,39 @@ class BackgroundServices extends AsyncTask<Void,Void,String>{
 
     }
 }
+//private void aotoLogin(){
+//    for (int x=0;x<Person_Login_List.size();x++){
+//
+//        if (sharedPreferences.getString("Email","no data").equals(Person_Login_List.get(x).P_Email)
+//                &&sharedPreferences.getString("person_password","no data").equals(Person_Login_List.get(x).P_Password )){
+//
+//            editor.putString("Email",Person_Username.getText().toString());
+//            editor.putString("person_password",Person_password.getText().toString());
+//            editor.putString("Username",Person_Login_List.get(x).Username);
+//            editor.putString("P_Image",Person_Login_List.get(x).P_Image);
+//
+//            editor.commit();
+//
+//            startActivity(new Intent(getActivity(), Home.class));
+//            pDialog.dismiss();
+//            getActivity().finish();
+//
+//
+//        }else {
+//
+//            if (Person_Login_List.size() -1== x){
+//
+//                pDialog.dismiss();
+//
+//
+//            }
+//
+//
+//        }
+//
+//    }
+//
 
 }
+
+

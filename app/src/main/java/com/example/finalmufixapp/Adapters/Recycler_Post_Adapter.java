@@ -106,6 +106,7 @@ public class Recycler_Post_Adapter extends RecyclerView.Adapter<Recycler_Post_Ad
         holder.date.setText(post_info_list.get(position).Date);
 
         if ( post_info_list.get(position).P_Image.equals("null")){
+            holder.Personal_Image.setBackgroundResource(R.drawable.ic_person_black_24dp);
 
         }else {
             Picasso.with(context).load(holder.url + post_info_list.get(position).P_Image).into(holder.Personal_Image);
@@ -143,105 +144,104 @@ public class Recycler_Post_Adapter extends RecyclerView.Adapter<Recycler_Post_Ad
     }
 
 
-    public void Show_Full_Post(final int postion) {
-
-        builder = new AlertDialog.Builder(context);
-        full_Post_Layout_View = LayoutInflater.from(context).inflate(R.layout.full_post_item, null);
-           full_post_Image_View=full_Post_Layout_View.findViewById(R.id.full_post_image_view);
-
-           Discreption=full_Post_Layout_View.findViewById(R.id.full_text_post);
-           Like=full_Post_Layout_View.findViewById(R.id.like);
-           Comment=full_Post_Layout_View.findViewById(R.id.comment);
-        builder.setView(full_Post_Layout_View);
-        builder.setCancelable(false);
-
-        Picasso.with(context).load(view_holder.url+post_info_list.get(postion).Image_Post).into(full_post_Image_View);
-
-        Discreption.setText(post_info_list.get(postion).Text_Post);
-
-        builder.setNegativeButton("Hide", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                likes_num(postion);
-
-           dialogInterface.cancel();
-            }
-        });
-        Like.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Send_Like_Data(postion);
-            }
-        });
-        Comment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent=new Intent(context, Comments.class);
-                intent.putExtra("Email",post_info_list.get(postion).Email);
-                intent.putExtra("Time",post_info_list.get(postion).Time);
-                intent.putExtra("Date",post_info_list.get(postion).Date);
-                context.startActivity(intent);
-
-
-                // formattedDate have current date/time
-
-            }
-        });
-
-
-        builder.show();
-
-    }
-
-    private void Send_Like_Data(final int postion){
+//    public void Show_Full_Post(final int postion) {
+//
+//        builder = new AlertDialog.Builder(context);
+//        full_Post_Layout_View = LayoutInflater.from(context).inflate(R.layout.full_post_item, null);
+//           full_post_Image_View=full_Post_Layout_View.findViewById(R.id.full_post_image_view);
+//
+//           Discreption=full_Post_Layout_View.findViewById(R.id.full_text_post);
+//           Like=full_Post_Layout_View.findViewById(R.id.like);
+//           Comment=full_Post_Layout_View.findViewById(R.id.comment);
+//        builder.setView(full_Post_Layout_View);
+//        builder.setCancelable(false);
+//
+//        Picasso.with(context).load(view_holder.url+post_info_list.get(postion).Image_Post).into(full_post_Image_View);
+//
+//        Discreption.setText(post_info_list.get(postion).Text_Post);
+//
+//        builder.setNegativeButton("Hide", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                likes_num(postion);
+//
+//           dialogInterface.cancel();
+//            }
+//        });
+//        Like.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+////                Send_Like_Data(postion);
+//            }
+//        });
+//        Comment.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Intent intent=new Intent(context, Comments.class);
+//                intent.putExtra("Email",post_info_list.get(postion).Email);
+//                intent.putExtra("Time",post_info_list.get(postion).Time);
+//                intent.putExtra("Date",post_info_list.get(postion).Date);
+//                context.startActivity(intent);
+//
+//
+//                // formattedDate have current date/time
+//
+//            }
+//        });
 
 
-        Response.Listener<String> listener =new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
+//        builder.show();
+//
+//    }
 
-
-                try {
-                    JSONObject jsonObject=new JSONObject(response);
-
-                    boolean success = jsonObject.getBoolean("success");
-                    if (success) {
-                        Like.setImageResource(R.drawable.fill_like_icon);
-
-                        Toast.makeText(context, "done", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Like.setImageResource(R.drawable.like_icon);
-
-                        Toast.makeText(context, "failed"+post_info_list.get(postion).Email, Toast.LENGTH_SHORT).show();
-                    }
-
-                } catch (JSONException e) {
-
-                    e.printStackTrace();
-                }
-
-            }
-        };
-
-
-        Add_Likes add_post_data=new Add_Likes(post_info_list.get(postion).Email,post_info_list.get(postion).Date,post_info_list.get(postion).Time,listener);
-        RequestQueue requestQueue = Volley.newRequestQueue(context);
-        requestQueue.add(add_post_data);
-
-
-        Toast.makeText(context, "running  "+post_info_list.get(postion).Email, Toast.LENGTH_SHORT).show();
-
-
-
-
-
-
-    }
+//    private void Send_Like_Data(final int postion){
+//
+//
+//        Response.Listener<String> listener =new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//
+//
+//                try {
+//                    JSONObject jsonObject=new JSONObject(response);
+//
+//                    boolean success = jsonObject.getBoolean("success");
+//                    if (success) {
+//                        Like.setImageResource(R.drawable.fill_like_icon);
+//
+//                        Toast.makeText(context, "done", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Like.setImageResource(R.drawable.like_icon);
+//
+//                        Toast.makeText(context, "failed"+post_info_list.get(postion).Email, Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                } catch (JSONException e) {
+//
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        };
+//
+//
+//        Add_Likes add_post_data=new Add_Likes(post_info_list.get(postion).Email,post_info_list.get(postion).Date,post_info_list.get(postion).Time,listener);
+//        RequestQueue requestQueue = Volley.newRequestQueue(context);
+//        requestQueue.add(add_post_data);
+//
+//
+//        Toast.makeText(context, "running  "+post_info_list.get(postion).Email, Toast.LENGTH_SHORT).show();
+//
+//
+//
+//
+//
+//
+//    }
 
 
     void likes_num( int position) {
-        Toast.makeText(context, "" + post_info_list.get(position).Date, Toast.LENGTH_SHORT).show();
 
         final SharedPreferences preferences=context.getSharedPreferences("mufix",Context.MODE_PRIVATE);
 RequestQueue requestQueue;
@@ -281,7 +281,6 @@ RequestQueue requestQueue;
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "Errrrrrrrrrrrrrrrrrrrrrrorrr", Toast.LENGTH_SHORT).show();
                 Log.e("VOLLEY", "Errrrrrrrrrrrrrrrrrrrrrrorrr");
                 error.printStackTrace();
 

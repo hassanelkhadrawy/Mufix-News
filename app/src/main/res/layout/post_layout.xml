@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="20dp"
-    android:background="#C4FFFFFF"
+    android:background="@color/buler_white"
     >
 
 
@@ -17,12 +17,17 @@
         android:id="@+id/post_tittle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="What's on your mind?" />
+        android:hint="What's on your mind?"
+        android:textColor="@color/nebity"
+        android:textColorHint="@color/orange"
+        />
 
             <EditText
                 android:id="@+id/text_post"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/nebity"
+                android:textColorHint="@color/orange"
                 android:hint="Desciption" />
 
 

@@ -54,7 +54,15 @@ Context context;
 
         c_holder.C_Username.setText(list.get(i).Username);
         c_holder.C_text.setText(list.get(i).Comment);
-        Picasso.with(context).load(url+list.get(i).P_Image).into(c_holder.C_P_Image);
+
+        if (list.get(i).P_Image.equals("null")){
+            c_holder.C_P_Image.setBackgroundResource(R.drawable.ic_person_black_24dp);
+
+
+        }else {
+            Picasso.with(context).load(url+list.get(i).P_Image).into(c_holder.C_P_Image);
+
+        }
 
 
     }

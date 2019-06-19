@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.design.widget.CoordinatorLayout
+<android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
+    android:background="@drawable/card_back"
+    android:layout_marginTop="10dp"
     android:id="@+id/buttom_sheet"
     android:orientation="vertical"
    >
@@ -19,16 +22,59 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="3">
+
         <ImageView
             android:id="@+id/full_post_image_view"
             android:layout_width="match_parent"
-            android:layout_height="248dp"
+            android:layout_height="373dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="8dp"
+            android:layout_weight="1"
             android:scaleType="fitXY"
-            android:src="@drawable/mufix_logo"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <!--<TextView-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:id="@+id/textView"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="16dp"-->
+            <!--android:text="Discreption"-->
+            <!--android:textColor="@color/nebity"-->
+            <!--android:textSize="18dp"-->
+            <!--android:textStyle="bold"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--tools:layout_editor_absoluteY="275dp" />-->
+
+        <TextView
+            android:layout_weight="2"
+            android:id="@+id/full_text_post"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:text="Discreption"
+            android:textColor="@color/orange"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:textStyle="normal"
+            />
+
+
+
+    </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,36 +102,6 @@
         </LinearLayout>
 
 
-
-        <TextView
-            android:layout_marginTop="15dp"
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Discreption"
-            android:textColor="@android:color/black"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="275dp" />
-
-        <TextView
-            android:id="@+id/full_text_post"
-            android:layout_width="359dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
-            android:padding="10dp"
-            android:text="Discreption"
-            android:textColor="@android:color/black"
-            android:gravity="center"
-            android:textSize="18dp"
-            android:textStyle="normal"
-            />
-
-
-
     </LinearLayout>
 
 
@@ -93,4 +109,4 @@
 
 
 
-</android.support.design.widget.CoordinatorLayout>
+</android.support.v7.widget.CardView>

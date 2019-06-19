@@ -3,14 +3,15 @@
         android:id="@+id/Setting"
         android:title="Setting"
         />
-    <item
-        android:id="@+id/Logout"
-        android:title="Logout"
-        />
 
     <item
         android:id="@+id/About"
         android:title="About"
         />
+    <item
+    android:id="@+id/Logout"
+    android:title="Logout"
+    />
+
 
 </menu>

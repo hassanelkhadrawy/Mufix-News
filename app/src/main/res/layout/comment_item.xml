@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
 
 
 
@@ -12,6 +21,10 @@
             android:id="@+id/Comment_P_Image"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginTop="2dp"
+            android:layout_gravity="center"
+            app:civ_border_color="@color/nebity"
+            app:civ_border_width="2dp"
             />
         <LinearLayout
             android:gravity="center"
@@ -25,6 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Name"
+                android:textColor="@color/nebity"
                 android:textSize="20sp"
                 android:textStyle="bold"/>
             <TextView
@@ -32,16 +46,22 @@
                 android:id="@+id/Comment_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name"
                 android:gravity="center"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textColor="@color/orange"
+                android:textStyle="normal"/>
 
         </LinearLayout>
 
+    </LinearLayout>
 
-
-
-
+    <View
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10sp"
+        android:background="@color/orange" />
 
 </LinearLayout>

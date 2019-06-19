@@ -14,12 +14,12 @@ Context context;
         this.context = context;
     }
 
-    private void SweetAlertDialog(){
+     void SweetAlertDialog(){
 
         pDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
-        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#9e0b0f"));
         pDialog.setTitleText("Loading");
-        pDialog.setCancelable(true);
+        pDialog.setCancelable(false);
 
     }
 }

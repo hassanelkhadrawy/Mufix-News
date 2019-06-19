@@ -113,7 +113,7 @@ Send_Comments_Data();
     private void SELECT_Comments_Data() {
         C_List.clear();
       RequestQueue  requestQueue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL+"time="+Time+"&date="+Date+"&email="+Email,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL+"time="+Time+"&date="+Date,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -122,7 +122,7 @@ Send_Comments_Data();
                             JSONArray jsonArray = response.getJSONArray("Comment_Info");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject getData = jsonArray.getJSONObject(i);
-                                String  get_Comment = getData.getString("username");
+                                String  get_Comment = getData.getString("comment");
                                 String  get_Username = getData.getString("username");
                                 String  get_P_Image = getData.getString("p_image");
 

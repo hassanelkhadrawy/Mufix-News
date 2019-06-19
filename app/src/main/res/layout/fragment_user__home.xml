@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#000"
     >
 
 
@@ -21,10 +20,13 @@
         <!--app:layout_constraintStart_toStartOf="parent"-->
         <!--app:layout_constraintTop_toTopOf="parent" />-->
 
+
+
     <jp.co.recruit_lifestyle.android.widget.WaveSwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rfreshmain">
+        android:id="@+id/rfreshmain"
+        >
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycle_item_post"
             android:layout_width="match_parent"

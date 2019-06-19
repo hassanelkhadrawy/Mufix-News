@@ -1,7 +1,9 @@
 package com.example.finalmufixapp.Activites;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -26,6 +28,9 @@ import com.example.finalmufixapp.Send_Data.ADD_USER;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
@@ -38,6 +43,8 @@ public class SignUp extends Fragment {
     View LayoutView;
     FloatingActionButton SignUp;
     EditText Person_Name,Email,Password;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     Button Submit;
     //String  Image_String;
     RequestQueue requestQueue;
@@ -67,11 +74,14 @@ public class SignUp extends Fragment {
         Email=LayoutView.findViewById(R.id.Email);
         Password=LayoutView.findViewById(R.id.Password);
         SignUp=LayoutView.findViewById(R.id.fab);
+        sharedPreferences=getActivity().getSharedPreferences("mufix_file", Context.MODE_PRIVATE);
+        editor=sharedPreferences.edit();
         SweetAlertDialog();
 
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String pass=Password.getText().toString();
 
                 if (Person_Name.getText().toString().isEmpty()){
                     Toast.makeText(getActivity(), "enter your name", Toast.LENGTH_SHORT).show();
@@ -84,18 +94,21 @@ public class SignUp extends Fragment {
                     Toast.makeText(getActivity(), "enter your Password", Toast.LENGTH_SHORT).show();
 
 
-                }else if (Patterns.EMAIL_ADDRESS.matcher(Email.getText().toString()).matches()){
-                    Toast.makeText(getActivity(), "enter correct Email", Toast.LENGTH_SHORT).show();
-
-
-                }else if (Password.getText().toString().length() >6){
+                }else if (pass.length() < 6){
                     Toast.makeText(getActivity(), "password very weak", Toast.LENGTH_SHORT).show();
 
 
                 }else {
-                    pDialog.show();
+                    boolean emai_valid=isEmailValid(Email.getText().toString());
+                    if (emai_valid){
 
-                    Send_Person_Data();
+                        pDialog.show();
+
+                        Send_Person_Data();
+                    }else {
+                        Toast.makeText(getActivity(), "enter valid email", Toast.LENGTH_SHORT).show();
+                    }
+
 
                 }
 
@@ -122,9 +135,9 @@ public class SignUp extends Fragment {
 
     private void Send_Person_Data(){
 
-        String username=Person_Name.getText().toString();
-        String email=Email.getText().toString();
-        String password=Password.getText().toString();
+        final String username=Person_Name.getText().toString();
+        final String email=Email.getText().toString();
+        final String password=Password.getText().toString();
 
 
 
@@ -141,6 +154,13 @@ public class SignUp extends Fragment {
 
                     boolean success = jsonObject.getBoolean("success");
                     if (success) {
+
+                        editor.putString("Email",email);
+                        editor.putString("person_password",password);
+                        editor.putString("Username",username);
+                        editor.putString("P_Image","null");
+
+                        editor.commit();
                         Toast.makeText(getActivity(), "done", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getActivity(), Home.class));
                         getActivity().finish();
@@ -213,7 +233,12 @@ public class SignUp extends Fragment {
 
     }
 
-
+    public static boolean isEmailValid(String email) {
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
 
 
 }
