@@ -1,5 +1,6 @@
 package com.example.finalmufixapp.Activites;
 
+import android.annotation.SuppressLint;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -37,6 +38,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,15 +86,21 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
     private View proofile_view;
     private ImageView Profile_Imag, bar_P_image;
     private TextView Profile_Person_Name;
+    Spinner Elfr2a,ElDepartment,ElSection;
     boolean list_Flag = false;
 
 
     private ArrayList<Post_Model> Profile_post_info_list = new ArrayList<>();
     private ArrayList<Post_Model> Post_List = new ArrayList<>();
+    private ArrayList<String> elfr2a_list=new ArrayList<>();
+    private ArrayList<String> department_list=new ArrayList<>();
+    private ArrayList<String> section_list=new ArrayList<>();
+
+
 
 
     ListView listView;
-    ArrayAdapter<String> arrayAdapter;
+    ArrayAdapter<String> arrayAdapter,elfr2aAdapter,EldepartAdapter,ElsectionAdapter;
     AutoCompleteTextView autocomplete;
     SearchView searchView;
     private Toolbar mTopToolbar;
@@ -105,8 +113,8 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
     static String url = "https://hassan-elkhadrawy.000webhostapp.com/mufix_app/phpfiles/images/";
     private String Profile_Post_URL = "https://hassan-elkhadrawy.000webhostapp.com/mufix_app/phpfiles/getSpecialPost.php?email=";
     private String Search_URL = "https://hassan-elkhadrawy.000webhostapp.com/mufix_app/phpfiles/Search.php?post_tittle=";
-//    String[] arr = { "android,java", "paython","php,embeded",
-//            "embeded system,iot"};
+     String txt_elfr2a,txt_depart,txt_section;
+
 
 
     @Override
@@ -118,6 +126,7 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         mTopToolbar = findViewById(R.id.my_toolbar);
         bar_P_image=findViewById(R.id.presonal_bar_imge_post);
+
         setSupportActionBar(mTopToolbar);
         mTopToolbar.setTitleTextColor(getResources().getColor(R.color.whihte));
         SweetAlertDialog();
@@ -131,8 +140,19 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
         searchView = findViewById(R.id.search_view);
         listView = findViewById(R.id.listView);
         listView.setVisibility(View.GONE);
+        elfr2a_list.add("--اختر الفرقه--");
+        elfr2a_list.add("الفرقه الاولى");
+        elfr2a_list.add("الفرقه الثانيه");
+        elfr2a_list.add("الفرقه الثالثه");
+        elfr2a_list.add("الفرقه الرابعه");
+        department_list.add("--اختر القسم--");
+        department_list.add("CS");
+        department_list.add("IT");
+        department_list.add("IS");
+        department_list.add("OR");
 
-       String p_image_name=sharedPreferences.getString("P_Image","null");
+
+        String p_image_name=sharedPreferences.getString("P_Image","null");
         if (p_image_name.equals("null")){
 
             bar_P_image.setBackgroundResource(R.drawable.ic_person_black_24dp);
@@ -156,10 +176,10 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
         };
         listView.setAdapter(arrayAdapter);
 
-        SearchView.SearchAutoComplete searchAutoComplete = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        SearchView.SearchAutoComplete searchAutoComplete = searchView.findViewById(R.id.search_src_text);
         searchAutoComplete.setHintTextColor(getResources().getColor(android.R.color.white));
         searchAutoComplete.setTextColor(getResources().getColor(android.R.color.white));
-        ImageView searchIcon = searchView.findViewById(android.support.v7.appcompat.R.id.search_button);
+        ImageView searchIcon = searchView.findViewById(R.id.search_button);
         searchIcon.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_search_black_24dp));
 
         searchView.setOnSearchClickListener(new View.OnClickListener() {
@@ -684,4 +704,6 @@ public class Home extends AppCompatActivity implements Recycler_Post_Adapter.Cli
         user_home.full_Post(post_info_list,position,Email,Home.this);
 
     }
+
+
 }

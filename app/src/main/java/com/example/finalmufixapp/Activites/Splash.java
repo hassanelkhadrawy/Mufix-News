@@ -137,7 +137,7 @@ public class Splash extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Splash.this, "chick internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Splash.this, "check internet", Toast.LENGTH_SHORT).show();
                 //progress_dialog.pDialog.dismiss();
 
 
@@ -153,7 +153,7 @@ public class Splash extends AppCompatActivity {
 
 
                 finish();
-                Intent i = new Intent(getBaseContext(),Home.class);
+                Intent i = new Intent(getBaseContext(),StartActivity.class);
                 startActivity(i);
                 break;
 
@@ -162,7 +162,7 @@ public class Splash extends AppCompatActivity {
                 if (chickLoginList.size() -1== x){
 
                     finish();
-                    Intent i = new Intent(getBaseContext(),MainActivity.class);
+                    Intent i = new Intent(getBaseContext(),StartActivity.class);
                     startActivity(i);
 
                 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    android:background="@drawable/card_back">
+
+
+    <Spinner
+        android:id="@+id/elfr2a"
+        android:background="@drawable/card_back"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:autofillHints="الفرقه">
+
+    </Spinner>
+
+    <Spinner
+        android:id="@+id/department"
+        android:background="@drawable/card_back"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="40dp">
+
+    </Spinner>
+
+
+
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/go"
+        android:text="go"
+        android:textColor="@color/whihte"
+        android:background="@drawable/button_background"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_gravity="end"/>
+
+
+
+</LinearLayout>

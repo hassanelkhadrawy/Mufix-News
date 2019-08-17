@@ -12,14 +12,28 @@
         android:roundIcon="@drawable/mufix_logo"
         android:supportsRtl="true"
         tools:replace="android:icon">
-        <activity android:name=".Activites.Splash"
+        <activity android:name=".Activites.User"
+            android:theme="@style/NoActionBarTheme" ></activity>
+        <activity
+            android:name=".Activites.Maps"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".Activites.Tables"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".Activites.StartActivity"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".Activites.Image"
+            android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".Activites.Splash"
             android:theme="@style/FullScreen">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".Activites.About"
@@ -36,9 +50,7 @@
             android:theme="@style/FullScreen" />
         <activity
             android:name=".Activites.MainActivity"
-            android:theme="@style/FullScreen">
-
-        </activity>
+            android:theme="@style/FullScreen" />
     </application>
 
 </manifest>
