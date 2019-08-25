@@ -1,5 +1,6 @@
 package com.example.finalmufixapp.Activites;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -33,20 +35,25 @@ public class Maps extends AppCompatActivity {
         action();
     }
 
+
     private void initView() {
         spMap = (Spinner) findViewById(R.id.sp_map);
         uploadImage = (Button) findViewById(R.id.upload_image);
         imageView3 = (ImageView) findViewById(R.id.imageView3);
         number_of_floor.add("--اختر الطابق--");
+        number_of_floor.add("الطابق الارضى");
         number_of_floor.add("الطابق الاول");
         number_of_floor.add("الطابق الثانى");
         number_of_floor.add("الطابق الثالث");
         number_of_floor.add("الطابق الرابع");
         number_of_floor.add("الطابق الخامس");
+        number_of_floor.add("الطابق السادس");
+        number_of_floor.add("الطابق السابع");
 
 
     }
-    private void action(){
+
+    private void action() {
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, number_of_floor) {
 
             @NonNull
@@ -60,6 +67,63 @@ public class Maps extends AppCompatActivity {
         };
         spMap.setAdapter(arrayAdapter);
 
+        spMap.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                switch (position) {
+                    case 1:
+                        imageView3.setImageResource(R.drawable.img1);
+                        return;
+                    case 2:
+                        imageView3.setImageResource(R.drawable.img2);
+                        return;
+                    case 3:
+                        imageView3.setImageResource(R.drawable.img3);
+                        return;
+                    case 4:
+                        imageView3.setImageResource(R.drawable.img4);
+                        return;
+                    case 5:
+                        imageView3.setImageResource(R.drawable.img5);
+                        return;
+                    case 6:
+                        imageView3.setImageResource(R.drawable.img6);
+                        return;
+                    case 7:
+                        imageView3.setImageResource(R.drawable.img7);
+                        return;
+                    case 8:
+                        imageView3.setImageResource(R.drawable.img8);
+                        return;
+                    default:
+                        return;
+
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        imageView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Maps.this, Image.class);
+                intent.putExtra("image_name", spMap.getSelectedItemPosition());
+                startActivity(intent);
+            }
+        });
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }
