@@ -47,6 +47,7 @@
             android:drawableStart="@drawable/ic_person_black_24dp"
             android:padding="5dp"
             android:text=" Log in"
+            android:onClick="LOGIN"
             android:textColor="@color/nebity"
             android:textSize="20sp" />
 

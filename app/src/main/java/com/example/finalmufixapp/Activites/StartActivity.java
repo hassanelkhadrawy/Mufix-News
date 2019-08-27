@@ -46,10 +46,7 @@ public class StartActivity extends AppCompatActivity {
         elfr2a_list.add("الفرقه الثالثه");
         elfr2a_list.add("الفرقه الرابعه");
         department_list.add("--اختر القسم--");
-        department_list.add("CS");
-        department_list.add("IT");
-        department_list.add("IS");
-        department_list.add("OR");
+
 
     }
 
@@ -102,18 +99,19 @@ public class StartActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 1) {
                     txt_elfr2a = elfr2a.getSelectedItem().toString();
-                    txt_depart = "public";
-                    txt_section=13;
-                    department.setVisibility(View.GONE);
+                  Department_list_1();
+                    department.setVisibility(View.VISIBLE);
+
                 } else if (position == 2) {
                     txt_elfr2a = elfr2a.getSelectedItem().toString();
-                    txt_depart = "public";
-                    txt_section=11;
-                    department.setVisibility(View.GONE);
+                   Department_list_1();
+                    department.setVisibility(View.VISIBLE);
                 } else if (position == 3) {
+                    Department_list_2();
                     txt_elfr2a = elfr2a.getSelectedItem().toString();
                     department.setVisibility(View.VISIBLE);
                 } else if (position == 4) {
+                    Department_list_2();
                     txt_elfr2a = elfr2a.getSelectedItem().toString();
                     department.setVisibility(View.VISIBLE);
                 } else {
@@ -130,7 +128,36 @@ public class StartActivity extends AppCompatActivity {
         department.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               if (elfr2a.getSelectedItemPosition()==3){
+
+                if (elfr2a.getSelectedItemPosition()==1){
+
+                    if (position == 1) {
+                        txt_depart = department.getSelectedItem().toString();
+                        txt_section=12;
+
+                    } else if (position == 2) {
+                        txt_depart = department.getSelectedItem().toString();
+                        txt_section=2;
+                    } else if (position == 3) {
+                        txt_depart = department.getSelectedItem().toString();
+                        txt_section=3;
+                    }
+                }else if (elfr2a.getSelectedItemPosition()==2){
+
+
+                    if (position == 1) {
+                        txt_depart = department.getSelectedItem().toString();
+                        txt_section=11;
+
+                    } else if (position == 2) {
+                        txt_depart = department.getSelectedItem().toString();
+                        txt_section=2;
+                    } else if (position == 3) {
+                        txt_depart = department.getSelectedItem().toString();
+                        txt_section=2;
+                    }
+
+                }else if (elfr2a.getSelectedItemPosition()==3){
 
                    if (position == 1) {
                        txt_depart = department.getSelectedItem().toString();
@@ -145,6 +172,12 @@ public class StartActivity extends AppCompatActivity {
                    } else if (position == 4) {
                        txt_depart = department.getSelectedItem().toString();
                        txt_section=1;
+                   }else if (position == 5) {
+                       txt_depart = department.getSelectedItem().toString();
+                       txt_section=2;
+                   }else if (position == 6) {
+                       txt_depart = department.getSelectedItem().toString();
+                       txt_section=2;
                    }
                }else if (elfr2a.getSelectedItemPosition()==4){
 
@@ -162,6 +195,12 @@ public class StartActivity extends AppCompatActivity {
                    } else if (position == 4) {
                        txt_depart = department.getSelectedItem().toString();
                        txt_section=1;
+                   }else if (position == 5) {
+                       txt_depart = department.getSelectedItem().toString();
+                       txt_section=2;
+                   }else if (position == 6) {
+                       txt_depart = department.getSelectedItem().toString();
+                       txt_section=2;
                    }
 
                }
@@ -208,5 +247,32 @@ public class StartActivity extends AppCompatActivity {
 
     public void NewsFeeds(View view) {
         startActivity(new Intent(this,User.class));
+    }
+
+
+    private void Department_list_1(){
+
+        department_list.clear();
+        department_list.add("--اختر القسم--");
+        department_list.add("Public");
+        department_list.add("Bioinformatics");
+        department_list.add("Software Engineering");
+    }
+
+
+    private void Department_list_2(){
+        department_list.clear();
+    department_list.add("--اختر القسم--");
+    department_list.add("CS");
+    department_list.add("IT");
+    department_list.add("IS");
+    department_list.add("OR");
+    department_list.add("Bioinformatics");
+    department_list.add("Software Engineering");
+}
+
+    public void LOGIN(View view) {
+        startActivity(new Intent(this,MainActivity.class));
+
     }
 }

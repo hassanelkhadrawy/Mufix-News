@@ -21,7 +21,6 @@ import java.util.ArrayList;
 public class Tables extends AppCompatActivity {
     private ArrayList<String> section_list = new ArrayList<>();
     private Spinner spSection;
-    private Button Go;
     private ImageView Display;
     private ArrayAdapter<String> section_adabter, EldepartAdapter;
 
@@ -53,7 +52,6 @@ public class Tables extends AppCompatActivity {
 
     private void initView() {
         spSection = (Spinner) findViewById(R.id.sp_section);
-        Go = (Button) findViewById(R.id.setTable);
         Display = (ImageView) findViewById(R.id.display);
     }
     private void action(){
@@ -73,12 +71,7 @@ public class Tables extends AppCompatActivity {
         };
         spSection.setAdapter(section_adabter);
 
-        Go.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Display.setImageResource(R.drawable.mufix_team);
-            }
-        });
+
 
     }
 }

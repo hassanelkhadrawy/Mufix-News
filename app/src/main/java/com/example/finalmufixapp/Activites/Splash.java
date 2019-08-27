@@ -40,9 +40,6 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 public class Splash extends AppCompatActivity {
-    private ArrayList<P_Info_Model> chickLoginList=new ArrayList<>();
-    SharedPreferences sharedPreferences;
-    private String URL = "https://hassan-elkhadrawy.000webhostapp.com/mufix_app/phpfiles/getUser_Info.php";
 
 
 
@@ -54,7 +51,6 @@ public class Splash extends AppCompatActivity {
        // final Animation animation_1 = AnimationUtils.loadAnimation(getBaseContext(),R.anim.rotate);
         final Animation animation_2 = AnimationUtils.loadAnimation(getBaseContext(),R.anim.antirotate);
         final Animation animation_3 = AnimationUtils.loadAnimation(getBaseContext(),R.anim.abc_fade_out);
-        sharedPreferences=getSharedPreferences("mufix_file", Context.MODE_PRIVATE);
         handleSSLHandshake();
 
         imageView.startAnimation(animation_2);
@@ -66,8 +62,8 @@ public class Splash extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-//                imageView.startAnimation(animation_1);
-//                textView.setText("News");
+                startActivity(new Intent(Splash.this,StartActivity.class));
+
 
             }
 
@@ -77,102 +73,11 @@ public class Splash extends AppCompatActivity {
             }
         });
 
-//        animation_1.setAnimationListener(new Animation.AnimationListener() {
-//            @Override
-//            public void onAnimationStart(Animation animation) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animation animation) {
-//                textView.setText("MUFIX News");
-//
-////                imageView.startAnimation(animation_3);
-//
-//
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(Animation animation) {
-//
-//            }
-//        });
-        SELECT_Login_Info(URL);
 
     }
 
-    void SELECT_Login_Info(String URL) {
-        chickLoginList.clear();
-        RequestQueue requestQueue = Volley.newRequestQueue(Splash.this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-
-                            JSONArray jsonArray = response.getJSONArray("User_Info");
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject getData = jsonArray.getJSONObject(i);
-                              String  get_Username = getData.getString("username");
-                              String  get_Email = getData.getString("email");
-                              String   get_Password = getData.getString("password");
-                              String    get_P_Image = getData.getString("p_image");
 
 
-                                chickLoginList.add(new P_Info_Model(get_Username, get_Email, get_Password, get_P_Image));
-
-                            }
-
-                            //progress_dialog.pDialog.dismiss();
-                            String email_shared = sharedPreferences.getString("Email", "no data found");
-                            String password_shared = sharedPreferences.getString("person_password", "no data found");
-
-
-                            aotoLogin(email_shared,password_shared);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Splash.this, "check internet", Toast.LENGTH_SHORT).show();
-                //progress_dialog.pDialog.dismiss();
-
-
-            }
-        });
-        requestQueue.add(jsonObjectRequest);
-    }
-    private void aotoLogin(String email,String password){
-        for (int x=0;x<chickLoginList.size();x++){
-
-            if (email.equals(chickLoginList.get(x).P_Email)
-                    &&password.equals(chickLoginList.get(x).P_Password )){
-
-
-                finish();
-                Intent i = new Intent(getBaseContext(),StartActivity.class);
-                startActivity(i);
-                break;
-
-            }else {
-
-                if (chickLoginList.size() -1== x){
-
-                    finish();
-                    Intent i = new Intent(getBaseContext(),StartActivity.class);
-                    startActivity(i);
-
-                }
-
-
-            }
-
-        }
-
-    }
 
     @SuppressLint("TrulyRandom")
     public static void handleSSLHandshake() {

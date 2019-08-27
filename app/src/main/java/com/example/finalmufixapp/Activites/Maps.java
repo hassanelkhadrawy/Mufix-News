@@ -22,7 +22,6 @@ import java.util.ArrayList;
 public class Maps extends AppCompatActivity {
 
     private Spinner spMap;
-    private Button uploadImage;
     private ImageView imageView3;
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String>number_of_floor=new ArrayList<>();
@@ -38,7 +37,6 @@ public class Maps extends AppCompatActivity {
 
     private void initView() {
         spMap = (Spinner) findViewById(R.id.sp_map);
-        uploadImage = (Button) findViewById(R.id.upload_image);
         imageView3 = (ImageView) findViewById(R.id.imageView3);
         number_of_floor.add("--اختر الطابق--");
         number_of_floor.add("الطابق الارضى");
@@ -125,5 +123,13 @@ public class Maps extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    public void Login(View view) {
+        startActivity(new Intent(this,MainActivity.class));
+    }
+
+    public void lOgIn(View view) {
+        startActivity(new Intent(this,MainActivity.class));
     }
 }
