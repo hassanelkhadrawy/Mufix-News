@@ -39,7 +39,7 @@
             android:layout_marginLeft="8dp"
             android:orientation="vertical">
 
-            <TextView
+            <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Bold
                 android:id="@+id/user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                 android:textColor="@color/nebity"
                 android:textSize="20sp" />
 
-            <TextView
+            <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
                 android:id="@+id/dateandtime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                 android:textColor="@color/nebity"
                 android:textSize="12sp" />
 
-            <TextView
+            <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
                 android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

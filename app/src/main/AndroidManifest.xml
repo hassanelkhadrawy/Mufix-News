@@ -13,22 +13,28 @@
         android:supportsRtl="true"
         tools:replace="android:icon">
         <activity android:name=".Activites.User"
-            android:theme="@style/NoActionBarTheme" ></activity>
+            android:theme="@style/NoActionBarTheme"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".Activites.Maps"
-            android:theme="@style/FullScreen" />
+            android:theme="@style/FullScreen"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activites.Tables"
-            android:theme="@style/FullScreen" />
+            android:theme="@style/FullScreen"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activites.StartActivity"
-            android:theme="@style/FullScreen" />
+            android:theme="@style/FullScreen"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activites.Image"
-            android:theme="@style/FullScreen" />
+            android:theme="@style/FullScreen"
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".Activites.Splash"
-            android:theme="@style/FullScreen">
+            android:theme="@style/FullScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,20 +43,25 @@
         </activity>
         <activity
             android:name=".Activites.About"
-            android:theme="@style/NoActionBarTheme" />
+            android:theme="@style/NoActionBarTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activites.Edit"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activites.Comments"
             android:label="Comments"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activites.Home"
-            android:theme="@style/FullScreen" />
+            android:theme="@style/FullScreen"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activites.MainActivity"
-            android:theme="@style/FullScreen" />
+            android:theme="@style/FullScreen"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

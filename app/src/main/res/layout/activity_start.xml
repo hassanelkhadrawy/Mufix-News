@@ -16,12 +16,24 @@
         android:layout_gravity="top"
         android:background="@drawable/bar_background"
         android:gravity="center"
-        android:theme="@style/HeaderBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/HeaderBar"
         >
+        <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|top"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:drawableStart="@drawable/ic_person_black_24dp"
+            android:padding="5dp"
+            android:text=" Log in"
+            android:onClick="LOGIN1"
+            android:textColor="@color/whihte"
+            android:textSize="20sp"
+            tools:ignore="OnClick" />
     </android.support.v7.widget.Toolbar>
 
 
@@ -33,23 +45,13 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/presonal_bar_imge_post"
             android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_height="82dp"
             android:layout_gravity="center"
             android:src="@mipmap/logo2_round"
             app:civ_border_color="@color/loginColor"
             app:civ_border_width="3dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|top"
-            android:layout_marginRight="10dp"
-            android:drawableStart="@drawable/ic_person_black_24dp"
-            android:padding="5dp"
-            android:text=" Log in"
-            android:onClick="LOGIN"
-            android:textColor="@color/nebity"
-            android:textSize="20sp" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -68,7 +70,7 @@
 
 
 
-        <TextView
+        <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
             android:onClick="NewsFeeds"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -78,7 +80,7 @@
             android:text="News Feeds"
             android:textSize="30sp"
             android:textColor="@color/whihte"/>
-        <TextView
+        <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/button_background"
@@ -88,7 +90,7 @@
             android:text="Time Table"
             android:textSize="30sp"
             android:textColor="@color/whihte"/>
-        <TextView
+        <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/button_background"

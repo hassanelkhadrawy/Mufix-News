@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.finalmufixapp.Models.Post_Model;
 import com.example.finalmufixapp.R;
@@ -81,12 +82,12 @@ public class User_Adapter extends RecyclerView.Adapter<User_Adapter.view_holder>
         holder.time.setText(post_info_list.get(position).Date+" "+post_info_list.get(position).Time );
 
 
-        if (post_info_list.get(position).P_Image.equals("null")) {
+        if (post_info_list.get(position).Image_Post.equals("null")) {
 
             holder.Image_Post.setVisibility(View.GONE);
 
         } else {
-            Picasso.with(context).load(holder.url + post_info_list.get(position).P_Image).placeholder(R.drawable.ic_person_black_24dp).into(holder.Image_Post);
+            Picasso.with(context).load(holder.url + post_info_list.get(position).Image_Post).placeholder(R.drawable.ic_person_black_24dp).into(holder.Image_Post);
 
 
         }

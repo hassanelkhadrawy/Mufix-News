@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.finalmufixapp.Adapters.Profile_Post_Adaptr;
 import com.example.finalmufixapp.Models.Post_Model;
@@ -73,5 +74,11 @@ public class Profile extends Fragment implements Profile_Post_Adaptr.ClickListen
     @Override
     public void onPostClick(ArrayList<Post_Model> post_info_list, int position) {
 
+    }
+
+    @Override
+    public void onDeleteClick(ArrayList<Post_Model> post_info_list, int position) {
+
+        Toast.makeText(getActivity(), "eeeeeeeeeeeeeee", Toast.LENGTH_SHORT).show();
     }
 }

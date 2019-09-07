@@ -1,7 +1,9 @@
 package com.example.finalmufixapp.Activites;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,6 +24,7 @@ public class Tables extends AppCompatActivity {
     private ArrayList<String> section_list = new ArrayList<>();
     private Spinner spSection;
     private ImageView Display;
+    private Typeface typeface;
     private ArrayAdapter<String> section_adabter, EldepartAdapter;
 
     @Override
@@ -40,7 +43,7 @@ public class Tables extends AppCompatActivity {
     private void Section(int number) {
         section_list.clear();
 
-        section_list.add("--اختر السكشن--");
+        section_list.add("--Select Section--");
 
         for (int i = 1; i <= number; i++) {
 
@@ -65,6 +68,8 @@ public class Tables extends AppCompatActivity {
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
                 TextView tv = view.findViewById(android.R.id.text1);
+                typeface = Typeface.createFromAsset(getAssets(),"fonts/Comfortaa-Bold.ttf");
+                tv.setTypeface(typeface);
                 tv.setTextColor(Color.parseColor("#9e0b0f"));
                 return view;
             }
@@ -72,6 +77,20 @@ public class Tables extends AppCompatActivity {
         spSection.setAdapter(section_adabter);
 
 
+
+    }
+
+    public void lOGIN(View view) {
+        startActivity(new Intent(this,MainActivity.class));
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        startActivity(new Intent(this,StartActivity.class));
+        finish();
 
     }
 }

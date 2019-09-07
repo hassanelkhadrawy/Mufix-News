@@ -54,7 +54,7 @@
                             android:layout_height="wrap_content"
                             android:textColorHint="@color/orange">
 
-                            <EditText
+                            <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Regular
                                 android:id="@+id/username"
                                 android:layout_width="280dp"
                                 android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                             app:passwordToggleEnabled="true"
                             app:passwordToggleTint="@color/orange">
 
-                            <EditText
+                            <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Regular
                                 android:id="@+id/P_password"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
                             android:text="------------------" />
 
 
-                        <TextView
+                        <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -114,7 +114,7 @@
                             android:textColor="@color/orange"
                             android:text="Connect to us" />
 
-                        <TextView
+                        <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"

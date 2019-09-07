@@ -10,7 +10,7 @@
     android:padding="10dp"
 
     android:layout_margin="15dp"
-    android:background="@drawable/post_bacground"
+    android:background="@drawable/card_back_without_border"
 
     >
 
@@ -60,7 +60,7 @@
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
-                    <TextView
+                    <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Bold
 
                         android:id="@+id/post_person_name"
                         android:layout_width="match_parent"
@@ -71,7 +71,7 @@
                         android:textSize="20dp"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Bold
                         android:id="@+id/post_tittle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
                 android:weightSum="3"
                 android:paddingLeft="30dp"
                 >
-                <TextView
+                <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
                     android:id="@+id/time"
                     android:layout_weight="1"
                     android:layout_width="0dp"
@@ -110,7 +110,7 @@
                     android:textSize="15dp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
                     android:paddingLeft="30dp"
                     android:id="@+id/date"
                     android:layout_width="0dp"

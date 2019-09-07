@@ -33,6 +33,7 @@ public class Image extends AppCompatActivity {
         switch (position) {
             case 1:
                 Display.setImageResource(R.drawable.img1);
+                return;
             case 2:
                 Display.setImageResource(R.drawable.img2);
                 return;

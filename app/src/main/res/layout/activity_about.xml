@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Bold
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -37,7 +37,7 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <TextView
+        <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Regular
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
@@ -62,7 +62,7 @@
         tools:layout_editor_absoluteX="30dp"
         tools:layout_editor_absoluteY="623dp">
 
-        <TextView
+        <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
             style="@style/Base.TextAppearance.AppCompat.Large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

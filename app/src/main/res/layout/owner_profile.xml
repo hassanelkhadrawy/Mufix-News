@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/buler_white"
+    android:layout_height="match_parent"
+    android:background="@drawable/card_back_without_border"
 
     >
 
@@ -23,7 +23,8 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                >
 
                 <!--<ImageView-->
                     <!--android:id="@+id/cover"-->
@@ -51,7 +52,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Bold
                     android:id="@+id/owner_profile_person_name"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
@@ -70,7 +71,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
 
-                <TextView
+                <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

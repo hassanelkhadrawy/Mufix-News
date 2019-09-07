@@ -2,6 +2,7 @@ package com.example.finalmufixapp.Activites;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 public class Maps extends AppCompatActivity {
 
     private Spinner spMap;
+    private Typeface typeface;
     private ImageView imageView3;
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String>number_of_floor=new ArrayList<>();
@@ -38,15 +40,15 @@ public class Maps extends AppCompatActivity {
     private void initView() {
         spMap = (Spinner) findViewById(R.id.sp_map);
         imageView3 = (ImageView) findViewById(R.id.imageView3);
-        number_of_floor.add("--اختر الطابق--");
-        number_of_floor.add("الطابق الارضى");
-        number_of_floor.add("الطابق الاول");
-        number_of_floor.add("الطابق الثانى");
-        number_of_floor.add("الطابق الثالث");
-        number_of_floor.add("الطابق الرابع");
-        number_of_floor.add("الطابق الخامس");
-        number_of_floor.add("الطابق السادس");
-        number_of_floor.add("الطابق السابع");
+        number_of_floor.add("--Select Floor--");
+        number_of_floor.add("G");
+        number_of_floor.add("1");
+        number_of_floor.add("2");
+        number_of_floor.add("3");
+        number_of_floor.add("4");
+        number_of_floor.add("5");
+        number_of_floor.add("6");
+        number_of_floor.add("7");
 
 
     }
@@ -58,7 +60,9 @@ public class Maps extends AppCompatActivity {
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
+                typeface = Typeface.createFromAsset(getAssets(),"fonts/Comfortaa-Bold.ttf");
                 TextView tv = view.findViewById(android.R.id.text1);
+                tv.setTypeface(typeface);
                 tv.setTextColor(Color.parseColor("#9e0b0f"));
                 return view;
             }
@@ -122,14 +126,15 @@ public class Maps extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        startActivity(new Intent(this,StartActivity.class));
         finish();
     }
 
-    public void Login(View view) {
-        startActivity(new Intent(this,MainActivity.class));
-    }
+
 
     public void lOgIn(View view) {
         startActivity(new Intent(this,MainActivity.class));
     }
+
+
 }

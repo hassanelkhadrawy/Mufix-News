@@ -3,6 +3,7 @@ package com.example.finalmufixapp.Activites;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.finalmufixapp.R;
 
@@ -28,6 +30,8 @@ public class StartActivity extends AppCompatActivity {
     private Spinner section;
     private Button go;
     private View view;
+    private Typeface typeface;
+    private TextView Login;
     private String txt_elfr2a, txt_depart;
     private int txt_section;
     private ArrayList<String> elfr2a_list=new ArrayList<>();
@@ -40,12 +44,14 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        elfr2a_list.add("--اختر الفرقه--");
-        elfr2a_list.add("الفرقه الاولى");
-        elfr2a_list.add("الفرقه الثانيه");
-        elfr2a_list.add("الفرقه الثالثه");
-        elfr2a_list.add("الفرقه الرابعه");
-        department_list.add("--اختر القسم--");
+        elfr2a_list.add("--Select Year--");
+        elfr2a_list.add("1");
+        elfr2a_list.add("2");
+        elfr2a_list.add("3");
+        elfr2a_list.add("4");
+        department_list.add("Select Department");
+        typeface = Typeface.createFromAsset(getAssets(),"fonts/Comfortaa-Bold.ttf");
+
 
 
     }
@@ -71,7 +77,9 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
+
                 TextView tv = view.findViewById(android.R.id.text1);
+                tv.setTypeface(typeface);
                 tv.setTextColor(Color.parseColor("#9e0b0f"));
                 return view;
             }
@@ -85,6 +93,7 @@ public class StartActivity extends AppCompatActivity {
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
                 TextView tv = view.findViewById(android.R.id.text1);
+                tv.setTypeface(typeface);
                 tv.setTextColor(Color.parseColor("#9e0b0f"));
                 return view;
             }
@@ -231,7 +240,10 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
-        builder.show();
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.card_back_without_border);
 
     }
 
@@ -239,6 +251,7 @@ public class StartActivity extends AppCompatActivity {
         elfr2a = (Spinner) view.findViewById(R.id.elfr2a);
         department = (Spinner)view.findViewById(R.id.department);
         go = (Button)view.findViewById(R.id.go);
+
     }
 
     public void Table_Time(View view) {
@@ -253,7 +266,7 @@ public class StartActivity extends AppCompatActivity {
     private void Department_list_1(){
 
         department_list.clear();
-        department_list.add("--اختر القسم--");
+        department_list.add("Select Department");
         department_list.add("Public");
         department_list.add("Bioinformatics");
         department_list.add("Software Engineering");
@@ -262,7 +275,7 @@ public class StartActivity extends AppCompatActivity {
 
     private void Department_list_2(){
         department_list.clear();
-    department_list.add("--اختر القسم--");
+    department_list.add("Select Department");
     department_list.add("CS");
     department_list.add("IT");
     department_list.add("IS");
@@ -271,7 +284,9 @@ public class StartActivity extends AppCompatActivity {
     department_list.add("Software Engineering");
 }
 
-    public void LOGIN(View view) {
+
+
+    public void LOGIN1(View view) {
         startActivity(new Intent(this,MainActivity.class));
 
     }

@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="20dp"
-    android:background="@drawable/card_back"
+    android:background="@drawable/card_back_without_border"
     android:layout_marginTop="10dp"
     android:id="@+id/buttom_sheet"
     android:orientation="vertical"
@@ -57,7 +57,7 @@
             <!--app:layout_constraintStart_toStartOf="parent"-->
             <!--tools:layout_editor_absoluteY="275dp" />-->
 
-        <TextView
+        <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
             android:layout_weight="2"
             android:id="@+id/full_text_post"
             android:layout_width="match_parent"

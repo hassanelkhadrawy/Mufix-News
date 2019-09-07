@@ -1,10 +1,12 @@
 package com.example.finalmufixapp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,17 +14,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.finalmufixapp.Activites.Home;
 import com.example.finalmufixapp.Models.Post_Model;
 import com.example.finalmufixapp.R;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class Profile_Post_Adaptr extends RecyclerView.Adapter<Profile_Post_Adaptr.profile_view_holder> {
-    static String url = "https://hassan-elkhadrawy.000webhostapp.com/mufix_app/phpfiles/images/";
+    private String DeletPostURL = "https://hassan-elkhadrawy.000webhostapp.com/mufix_app/phpfiles/DeletePost.php?";
 
     public static class profile_view_holder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView post_Tittle;
+        ImageView Delete;
 
 
         public profile_view_holder(View home_itemView) {
@@ -30,6 +43,7 @@ public class Profile_Post_Adaptr extends RecyclerView.Adapter<Profile_Post_Adapt
 
 
             post_Tittle = home_itemView.findViewById(R.id.p_i_post);
+            Delete = home_itemView.findViewById(R.id.delete);
 
 
         }
@@ -55,6 +69,8 @@ public class Profile_Post_Adaptr extends RecyclerView.Adapter<Profile_Post_Adapt
 
     public interface ClickListener {
         void onPostClick(ArrayList<Post_Model> post_info_list,int position);
+        void onDeleteClick(ArrayList<Post_Model> post_info_list,int position);
+
 
 
     }
@@ -72,13 +88,23 @@ public class Profile_Post_Adaptr extends RecyclerView.Adapter<Profile_Post_Adapt
 
         holder.post_Tittle.setText(post_info_list.get(position).Text_Tittle);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.post_Tittle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 clickListener.onPostClick(post_info_list,position);
             }
         });
+        holder.Delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                clickListener.onDeleteClick(post_info_list,position);
+                DeletePosts(DeletPostURL+"time="+post_info_list.get(position).Time+"&date="+post_info_list.get(position).Date+"&email="+post_info_list.get(position).Email);
+
+            }
+        });
+
 
 
     }
@@ -88,22 +114,47 @@ public class Profile_Post_Adaptr extends RecyclerView.Adapter<Profile_Post_Adapt
         return post_info_list.size();
     }
 
-private void prof_post( int position){
-   View profile_view = LayoutInflater.from(context).inflate(R.layout.fragment_profile, null);
+    private void DeletePosts(String url){
 
-    ImageView Profile_Imag = profile_view.findViewById(R.id.profile_circleImageView);
-    BottomSheetDialog dialog = new BottomSheetDialog(context);
-    dialog.setContentView(profile_view);
-    TextView Profile_Person_Name = profile_view.findViewById(R.id.profile_person_name);
-    Profile_Person_Name.setText(post_info_list.get(position).Username);
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
 
-    if (post_info_list.get(position).P_Image!="null"){
-        Picasso.with(context).load(url + post_info_list.get(position).P_Image).into(Profile_Imag);
+                        try {
+
+                            boolean success = response.getBoolean("success");
+
+                            if (success){
+                                context.startActivity(new Intent(context, Home.class));
+                            }else {
+                                Toast.makeText(context, "faild", Toast.LENGTH_SHORT).show();
+
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(context, "check internet", Toast.LENGTH_SHORT).show();
+                Log.d("error",error.getMessage());
+
+
+            }
+        });
+        requestQueue.add(jsonObjectRequest);
+
+
+
 
     }
-    dialog.show();
 
-}
 
 
 }

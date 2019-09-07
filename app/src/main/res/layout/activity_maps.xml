@@ -15,12 +15,27 @@
         android:layout_gravity="top"
         android:background="@drawable/bar_background"
         android:gravity="center"
-        android:theme="@style/HeaderBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/HeaderBar"
         >
+
+        <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginEnd="10dp"
+            android:drawableStart="@drawable/ic_person_black_24dp"
+            android:padding="5dp"
+            android:onClick="lOgIn"
+            android:text=" Log in"
+            android:textColor="@color/whihte"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </android.support.v7.widget.Toolbar>
 
 
@@ -33,63 +48,50 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+
         >
 
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/presonal_bar_imge_post"
             android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_height="82dp"
             android:layout_gravity="center"
             android:src="@mipmap/logo2_round"
             app:civ_border_color="@color/loginColor"
             app:civ_border_width="3dp" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginEnd="10dp"
-        android:drawableStart="@drawable/ic_person_black_24dp"
-        android:padding="5dp"
-        android:onClick="lOgIn"
-        android:text=" Log in"
-        android:textColor="@color/nebity"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="parent" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
 
 
-    <TextView
+    <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Bold
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Map"
-        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
         android:textColor="@color/nebity"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toTopOf="@+id/elfr2a"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
+        android:textSize="40sp" />
 
 
-        <LinearLayout
-            android:padding="10dp"
-            android:weightSum="4"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+
 
 
     <Spinner
-        android:layout_weight="3"
         android:id="@+id/sp_map"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginLeft="14dp"
-        android:layout_marginRight="5dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
         android:autofillHints="الفرقه"
         android:background="@drawable/card_back"
       >
@@ -112,23 +114,19 @@
         <!--app:layout_constraintTop_toBottomOf="@+id/textView"-->
         <!--app:layout_constraintVertical_bias="0.0" />-->
 
-        </LinearLayout>
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="23dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
+        android:layout_height="222dp"
         android:scaleType="fitXY"
-        android:padding="5dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/card_back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/elfr2a" />
+        android:padding="5dp" />
+
+</LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

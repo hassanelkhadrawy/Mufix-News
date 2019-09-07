@@ -13,6 +13,7 @@ import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.finalmufixapp.Adapters.Profile_Post_Adaptr;
 import com.example.finalmufixapp.Adapters.Recycler_Post_Adapter;
+import com.example.finalmufixapp.Models.P_Info_Model;
 import com.example.finalmufixapp.Models.Post_Model;
 import com.example.finalmufixapp.R;
 import com.example.finalmufixapp.Send_Data.Add_Likes;
@@ -81,9 +83,10 @@ public class User_Home extends Fragment implements Recycler_Post_Adapter.ClickLi
         // Inflate the layout for this fragment
         User_home_view = inflater.inflate(R.layout.fragment_user__home, container, false);
         ButterKnife.bind(getActivity());
-
         Initi();
+        refresh();
         return User_home_view;
+
     }
 
 
@@ -255,9 +258,16 @@ public class User_Home extends Fragment implements Recycler_Post_Adapter.ClickLi
 
     @Override
     public void onPostClick(ArrayList<Post_Model> post_info_list, int position) {
-        final SharedPreferences preferences = getActivity().getSharedPreferences("mufix", Context.MODE_PRIVATE);
-        String Email=preferences.getString("Email", "no data");
+        String Email=sharedPreferences.getString("Email", "no data");
         full_Post(post_info_list,position,Email,getActivity());
+
+    }
+
+    @Override
+    public void onDeleteClick(ArrayList<Post_Model> post_info_list, int position) {
+
+
+        Toast.makeText(home, "hjghgh", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -321,8 +331,10 @@ public class User_Home extends Fragment implements Recycler_Post_Adapter.ClickLi
         Discreption.setText(post_list.get(position).Text_Post);
 //        SELECT_Post_INFO(URL,context);
         dialog.show();
+         dialog.getWindow().setBackgroundDrawableResource(R.drawable.card_back_without_border);
 
-    }
+
+     }
 
     private void Send_Like_Data(final ArrayList<Post_Model> post_list, final int position, final Context context) {
 
@@ -444,13 +456,14 @@ public class User_Home extends Fragment implements Recycler_Post_Adapter.ClickLi
             Picasso.with(getActivity()).load(url + Post_List.get(position).P_Image).into(Profile_Imag);
 
         }
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.card_back_without_border);
         dialog.show();
 
     }
 
-    void refresh() {
+   public void refresh() {
 
-        refreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
+       refreshLayout.setOnRefreshListener(new WaveSwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
 
@@ -475,7 +488,9 @@ public class User_Home extends Fragment implements Recycler_Post_Adapter.ClickLi
     }
 
 
-public void updaterefreshPosts(){
+
+
+    public void updaterefreshPosts(){
     SELECT_Post_INFO(URL,getActivity());
 
 }
