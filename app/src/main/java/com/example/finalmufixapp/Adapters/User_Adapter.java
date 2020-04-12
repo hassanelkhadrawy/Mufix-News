@@ -3,6 +3,7 @@ package com.example.finalmufixapp.Adapters;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ public class User_Adapter extends RecyclerView.Adapter<User_Adapter.view_holder>
     public static class view_holder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView person_name, post_Description, time;
         ImageView Image_Post;
+        CardView cardView;
         static String url = "https://hassan-elkhadrawy.000webhostapp.com/mufix_app/phpfiles/images/";
 
 
@@ -34,6 +36,7 @@ public class User_Adapter extends RecyclerView.Adapter<User_Adapter.view_holder>
             post_Description = itemView.findViewById(R.id.description);
             Image_Post = itemView.findViewById(R.id.img_post);
             time = itemView.findViewById(R.id.dateandtime);
+            cardView=itemView.findViewById(R.id.img_card);
 
 
 
@@ -77,14 +80,16 @@ public class User_Adapter extends RecyclerView.Adapter<User_Adapter.view_holder>
     public void onBindViewHolder(@NonNull final User_Adapter.view_holder holder, final int position) {
 
 
-        holder.person_name.setText(post_info_list.get(position).Username);
-        holder.post_Description.setText(post_info_list.get(position).Text_Tittle +"\n"+post_info_list.get(position).Text_Post);
-        holder.time.setText(post_info_list.get(position).Date+" "+post_info_list.get(position).Time );
+        holder.person_name.setText(post_info_list.get(position).Text_Tittle);
+        holder.post_Description.setText( post_info_list.get(position).Text_Post);
+        holder.time.setText(post_info_list.get(position).Date+"   "+post_info_list.get(position).Time );
 
 
         if (post_info_list.get(position).Image_Post.equals("null")) {
 
             holder.Image_Post.setVisibility(View.GONE);
+            holder.cardView.setVisibility(View.GONE);
+
 
         } else {
             Picasso.with(context).load(holder.url + post_info_list.get(position).Image_Post).placeholder(R.drawable.ic_person_black_24dp).into(holder.Image_Post);

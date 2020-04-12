@@ -1,10 +1,16 @@
 package com.example.finalmufixapp.Activites;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -13,7 +19,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.finalmufixapp.Adapters.Recycler_Post_Adapter;
 import com.example.finalmufixapp.Adapters.User_Adapter;
 import com.example.finalmufixapp.Models.Post_Model;
 import com.example.finalmufixapp.R;
@@ -23,11 +28,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class User extends AppCompatActivity implements User_Adapter.ClickListener {
+public class User extends AppCompatActivity implements User_Adapter.ClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView userRecycler;
-    ArrayList<Post_Model> Post_List = new ArrayList<>();
+    private SwipeRefreshLayout refreshLayout;
+    private Toolbar mTopToolbar;
+    private Progress_Dialog progress_dialog;
+    private ArrayList<Post_Model> Post_List = new ArrayList<>();
     private String URL = "https://hassan-elkhadrawy.000webhostapp.com/mufix_app/phpfiles/Posts.php";
 
     @Override
@@ -48,7 +57,16 @@ public class User extends AppCompatActivity implements User_Adapter.ClickListene
     }
 
     private void initView() {
+        mTopToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(mTopToolbar);
+        mTopToolbar.setTitleTextColor(getResources().getColor(R.color.whihte));
         userRecycler = (RecyclerView) findViewById(R.id.user_recycler);
+        progress_dialog = new Progress_Dialog(User.this);
+        progress_dialog.SweetAlertDialog();
+        refreshLayout = findViewById(R.id.user_rfreshmain);
+        refreshLayout.setOnRefreshListener(this);
+        refreshLayout.setColorSchemeColors(Color.parseColor("#ee6e2c"));
+
     }
 
     @Override
@@ -59,7 +77,9 @@ public class User extends AppCompatActivity implements User_Adapter.ClickListene
 
     void SELECT_Post_INFO(String Post_URL, final Context context) {
         Post_List.clear();
-       RequestQueue requestQueue = Volley.newRequestQueue(context);
+        refreshLayout.setRefreshing(false);
+        progress_dialog.pDialog.show();
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Post_URL,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -83,13 +103,14 @@ public class User extends AppCompatActivity implements User_Adapter.ClickListene
 
                             }
 
+                            Collections.reverse(Post_List);
                             User_Adapter user_adapter = new User_Adapter(User.this, Post_List, User.this);
                             userRecycler.setLayoutManager(new LinearLayoutManager(User.this));
                             userRecycler.setAdapter(user_adapter);
                             user_adapter.notifyDataSetChanged();
 
 
-                            //                          home.pDialog.dismiss();
+                            progress_dialog.pDialog.dismiss();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -100,7 +121,7 @@ public class User extends AppCompatActivity implements User_Adapter.ClickListene
             public void onErrorResponse(VolleyError error) {
 
 
-                //             home.pDialog.dismiss();
+                progress_dialog.pDialog.dismiss();
                 Toast.makeText(context, "Faild ", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
 
@@ -109,9 +130,35 @@ public class User extends AppCompatActivity implements User_Adapter.ClickListene
         requestQueue.add(jsonObjectRequest);
     }
 
+
+    @Override
+    public void onRefresh() {
+        SELECT_Post_INFO(URL,this);
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.About) {
+
+            startActivity(new Intent(User.this, About.class));
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        startActivity(new Intent(this, StartActivity.class));
         finish();
     }
+
 }

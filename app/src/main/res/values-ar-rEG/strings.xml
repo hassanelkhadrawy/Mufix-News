@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MUFIX</string>
+    <string name="lecture">  محاضرة</string>
+    <string name="section">  سكشن</string>
+</resources>

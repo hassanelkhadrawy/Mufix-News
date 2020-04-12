@@ -21,19 +21,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/HeaderBar"
         >
-        <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|top"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:drawableStart="@drawable/ic_person_black_24dp"
-            android:padding="5dp"
-            android:text=" Log in"
-            android:onClick="LOGIN1"
-            android:textColor="@color/whihte"
-            android:textSize="20sp"
-            tools:ignore="OnClick" />
+
+
+
     </android.support.v7.widget.Toolbar>
 
 
@@ -43,16 +33,15 @@
         android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/presonal_bar_imge_post"
-            android:layout_width="80dp"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="82dp"
             android:layout_height="82dp"
             android:layout_gravity="center"
-            android:src="@mipmap/logo2_round"
-            app:civ_border_color="@color/loginColor"
-            app:civ_border_width="3dp" />
-
-
-
+            android:src="@mipmap/ic_launcher"
+            app:civ_border_width="2dp"
+            app:civ_border_overlay="true"
+            app:civ_border_color="@color/orange"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -24,26 +24,29 @@
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+     >
 
         <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Bold
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginTop="30dp"
             android:paddingBottom="5dp"
             android:text="@string/app_name"
             android:textColor="@color/nebity"
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Regular
+        <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="5dp"
+            android:layout_gravity="center_vertical"
             android:text="@string/about"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="70dp"
             android:textColor="@color/whihte"
             android:textSize="20sp" />
 

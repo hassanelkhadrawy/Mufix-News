@@ -23,15 +23,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/img_post"
-            android:layout_width="150dp"
-            android:layout_height="144dp"
-            android:background="@drawable/card_back"
-            android:padding="5dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/mufix_team" />
 
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/img_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="7dp"
+            android:background="@drawable/card_back">
+            <ImageView
+                android:id="@+id/img_post"
+                android:layout_width="150dp"
+                android:layout_height="144dp"
+                android:padding="5dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:layout_gravity="center"
+                />
+        </android.support.v7.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,14 +67,27 @@
                 android:textColor="@color/nebity"
                 android:textSize="12sp" />
 
-            <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
-                android:id="@+id/description"
+            <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="hassan ragab"
-                android:textColor="@color/orange"
-                android:textSize="15sp" />
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.example.finalmufixapp.Tools.Fonts.Comfortaa_Light
+                        android:id="@+id/description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:text="hassan ragab"
+                        android:textColor="@color/orange"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+            </android.support.v4.widget.NestedScrollView>
+
 
         </LinearLayout>
 

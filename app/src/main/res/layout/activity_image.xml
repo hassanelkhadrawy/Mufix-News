@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="#000"
+    android:background="@color/whihte"
     tools:context=".Activites.Image">
 
 
@@ -17,7 +17,7 @@
         <com.github.chrisbanes.photoview.PhotoView
             android:id="@+id/show"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:gravity="center"
             />

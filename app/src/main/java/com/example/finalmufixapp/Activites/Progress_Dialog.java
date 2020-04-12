@@ -1,12 +1,13 @@
 package com.example.finalmufixapp.Activites;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Progress_Dialog {
-    SweetAlertDialog pDialog;
+    ProgressDialog pDialog;
 
 Context context;
 
@@ -16,9 +17,9 @@ Context context;
 
      void SweetAlertDialog(){
 
-        pDialog = new SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE);
-        pDialog.getProgressHelper().setBarColor(Color.parseColor("#9e0b0f"));
-        pDialog.setTitleText("Loading");
+        pDialog = new ProgressDialog(context);
+//        pDialog..setBarColor(Color.parseColor("#ee6e2c"));
+        pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
 
     }
