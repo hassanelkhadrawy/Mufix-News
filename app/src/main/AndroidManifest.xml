@@ -13,10 +13,6 @@
         android:roundIcon="@mipmap/icon_logo_round"
         android:supportsRtl="false"
         tools:replace="android:icon">
-        <activity android:name=".MainActivity"
-            android:theme="@style/FullScreen">
-
-        </activity>
         <activity
             android:name=".Activites.Maps"
             android:screenOrientation="portrait"
